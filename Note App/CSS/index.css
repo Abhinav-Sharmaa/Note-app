@@ -1,0 +1,141 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+section {
+    background-image: url("/IMAGES/quick-ps-6CsREDPUK3Y-unsplash.jpg");
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+.border-bg {
+    border: 20px solid rgb(120, 192, 255);
+}
+
+#txt {
+    background-color: rgb(186, 226, 213);
+    font-family: 'Libre Baskerville', serif;
+}
+
+.heading {
+    color: white;
+    text-align: center;
+    font-size: 3rem;
+    font-family: 'Sigmar One', cursive;
+}
+
+.top {
+    align-items: center;
+    padding: 2rem 2rem;
+    position: relative;
+    justify-content: center;
+    /* justify-self: center; */
+    justify-items: center;
+    /* align-self: center; */
+    display: grid;
+}
+
+.addBtn {
+    width: 22rem;
+    margin-top: 20px;
+    font-family: 'Sigmar One', cursive;
+    font-size: 38px !important;
+    padding: 3px 0px 3px 0px;
+    cursor: pointer;
+    border-radius: 6px;
+    border: 0px;
+    transition: all 0.5s ease-in-out !important;
+}
+
+.addBtn:hover {
+    color: tomato;
+    background-color: thistle;
+    transform: scale(1.1);
+}
+
+.addBtn:active {
+    transform: rotateX(70deg);
+    transform: rotateY(70deg);
+}
+
+.bottom {
+    border-top: 1px solid rgb(120, 192, 255);
+    background-color: transparent !important;
+}
+
+.card-body {
+    color: rgb(47, 47, 47);
+    width: 20rem;
+    border: 5px solid rgb(9, 234, 255);
+    padding: 2rem 2rem;
+    background-color: wheat;
+    margin: 8px 8px;
+}
+
+.del {
+    padding: 10px 30px;
+    margin-top: 2em;
+    cursor: pointer;
+    border: 0px;
+    transition: all 0.6s;
+    background-color: rgb(255, 102, 0);
+}
+
+.del:hover {
+    transform: scale(1.2);
+}
+
+.del:active {
+    transform: rotateX(10deg);
+    transform: rotateY(10deg);
+}
+
+#search {
+    padding: 10px 10px;
+    text-align: center;
+    font-size: 1rem;
+    background: transparent;
+    outline: 0px;
+    color: white;
+    position: absolute;
+    right: 15px;
+    top: 32px;
+}
+
+#search:focus {
+    background-color: white;
+    color: black;
+}
+
+@media screen and (max-width: 1200px) {
+    #search {
+        width: 94%;
+        left: 50%;
+        top: 9%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+    }
+    .top {
+        padding: 3rem 3rem;
+    }
+}
+
+.gradin {
+    /* background: #000000;
+    background: -webkit-linear-gradient(to right, #000000, #434343);
+    background: linear-gradient(to right, #000000, #434343); */
+    background-color: #000;
+}
+
+
+/* body {
+} */
+
+.ball {
+    position: fixed;
+    border-radius: 100%;
+    opacity: 0.7;
+}
