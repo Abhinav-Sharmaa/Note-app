@@ -31,3 +31,14 @@ foreach ($results as $result) {
     echo '<a href="' . $result['url'] . '">' . $result['title'] . '</a><br />';
     echo $result['description'] . '<br /><br />';
 }
+
+
+
+
+
+
+
+<form action="search.php" method="GET">
+    <input type="text" name="query" placeholder="Search...">
+    <input type="submit" value="Search">
+</form>
