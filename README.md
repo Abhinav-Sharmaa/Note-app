@@ -1,44 +1,39 @@
-// Step 2: Retrieve the search query
-$search_query = $_GET['search_query'];
+<?php
+// Step 1: Retrieve the search query
+$query = isset($_GET['query']) ? $_GET['query'] : '';
 
-// Step 3: Read the website's content
+// Step 2: Read the website's content
 $content = file_get_contents('http://www.example.com');
 
-// Step 4: Create an index file
-$index = array();
-
-// Step 5: Parse the content
-$title = preg_match('/<title>(.*?)<\/title>/i', $content, $matches) ? $matches[1] : '';
-$description = preg_match('/<meta name="description" content="(.*?)"/i', $content, $matches) ? $matches[1] : '';
-
-// Step 6: Add the content to the index
-$index[] = array(
-    'title' => $title,
-    'description' => $description,
-    'url' => 'http://www.example.com'
-);
-
-// Step 7: Perform the search
+// Step 3: Parse the content and perform the search
 $results = array();
-foreach ($index as $page) {
-    if (stripos($page['title'], $search_query) !== false || stripos($page['description'], $search_query) !== false) {
-        $results[] = $page;
+if (!empty($query)) {
+    // Find all the links on the page
+    preg_match_all('/<a\s+href=["\']([^"\']+)["\']/i', $content, $matches);
+
+    // Loop through the links and check if they match the search query
+    foreach ($matches[1] as $url) {
+        $page_content = file_get_contents($url);
+        if (stripos($page_content, $query) !== false) {
+            // The search query was found on this page
+            $title = preg_match('/<title>(.*?)<\/title>/i', $page_content, $matches) ? $matches[1] : '';
+            $description = preg_match('/<meta name="description" content="(.*?)"/i', $page_content, $matches) ? $matches[1] : '';
+
+            $results[] = array(
+                'title' => $title,
+                'description' => $description,
+                'url' => $url
+            );
+        }
     }
 }
 
-// Display the results
-foreach ($results as $result) {
-    echo '<a href="' . $result['url'] . '">' . $result['title'] . '</a><br />';
-    echo $result['description'] . '<br /><br />';
+// Step 4: Display the search results
+if (!empty($results)) {
+    foreach ($results as $result) {
+        echo '<a href="' . $result['url'] . '">' . $result['title'] . '</a><br />';
+        echo $result['description'] . '<br /><br />';
+    }
+} else {
+    echo 'No results found.';
 }
-
-
-
-
-
-
-
-<form action="search.php" method="GET">
-    <input type="text" name="query" placeholder="Search...">
-    <input type="submit" value="Search">
-</form>
